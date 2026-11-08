@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Social Media Platform - Automation Testing App</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header">
+    <div class="container nav-content">
+      <div class="logo">
+        <span class="logo-icon">🌐</span>
+        <h1>SocialSphere</h1>
+      </div>
+      <div id="user-nav" class="user-nav hidden">
+        <span id="user-badge" class="badge">👤 Pratap Singh</span>
+        <button id="logout-btn" class="btn btn-outline" type="button">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container main-content">
+    <!-- Notification Banner -->
+    <div id="notification-banner" class="notification hidden" role="alert"></div>
+
+    <!-- AUTH SECTION (Login / Register) -->
+    <section id="auth-section" class="card auth-card">
+      <div class="tabs">
+        <button id="tab-login" class="tab-btn active" type="button" onclick="switchAuthTab('login')">Login</button>
+        <button id="tab-register" class="tab-btn" type="button" onclick="switchAuthTab('register')">Register</button>
+      </div>
+
+      <!-- Login Form -->
+      <form id="login-form" class="auth-form" onsubmit="event.preventDefault();">
+        <h2>Welcome Back</h2>
+        <p class="subtitle">Enter your credentials to access your social feed.</p>
+        <div class="form-group">
+          <label for="login-email">Email Address</label>
+          <input type="email" id="login-email" placeholder="pratap123@email.com" value="pratap123@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password" placeholder="••••••" value="pratap" />
+        </div>
+        <button type="button" id="login-btn" onclick="handleLogin(event)" class="btn btn-primary full-width">Login</button>
+      </form>
+
+      <!-- Register Form -->
+      <form id="register-form" class="auth-form hidden" onsubmit="event.preventDefault();">
+        <h2>Create Account</h2>
+        <p class="subtitle">Join SocialSphere in just a few clicks.</p>
+        <div class="form-group">
+          <label for="reg-name">Full Name (min 5 chars)</label>
+          <input type="text" id="reg-name" placeholder="John Doe" />
+        </div>
+        <div class="form-group">
+          <label for="reg-email">Email Address</label>
+          <input type="email" id="reg-email" placeholder="johndoe@example.com" />
+        </div>
+        <div class="form-group">
+          <label for="reg-password">Password (min 6 chars)</label>
+          <input type="password" id="reg-password" placeholder="••••••" />
+        </div>
+        <button type="button" id="register-btn" onclick="handleRegister(event)" class="btn btn-primary full-width">Create Account</button>
+      </form>
+    </section>
+
+    <!-- FEED SECTION (Visible After Login) -->
+    <section id="feed-section" class="feed-section hidden">
+      <!-- Create Post Widget -->
+      <div class="card create-post-card">
+        <h3>Create a New Post</h3>
+        <form id="create-post-form" onsubmit="event.preventDefault();">
+          <div class="form-group">
+            <input type="text" id="post-title" placeholder="Post Title (e.g. Automation Testing Tips)" />
+          </div>
+          <div class="form-group">
+            <textarea id="post-desc" placeholder="What's on your mind?..." rows="3"></textarea>
+          </div>
+          <button type="button" id="create-post-btn" onclick="handleCreatePost(event)" class="btn btn-primary">Publish Post</button>
+        </form>
+      </div>
+
+      <!-- Feed Header -->
+      <div class="feed-header">
+        <h3>Live Feed</h3>
+        <button id="refresh-feed-btn" type="button" class="btn btn-secondary btn-sm" onclick="fetchFeed()">↻ Refresh Feed</button>
+      </div>
+
+      <!-- Posts Container -->
+      <div id="posts-container" class="posts-list">
+        <!-- Posts will be rendered dynamically here -->
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
